@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Go Day 2026 — Volunteer Overview</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #F7F4EF;
+      color: #2D3748;
+      line-height: 1.6;
+    }
+
+    /* ── Header ── */
+    .hero {
+      background: linear-gradient(135deg, #1A365D 0%, #2C5282 60%, #2B6CB0 100%);
+      color: white;
+      text-align: center;
+      padding: 48px 24px 40px;
+    }
+    .hero-eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #90CDF4;
+      margin-bottom: 10px;
+    }
+    .hero h1 {
+      font-size: clamp(26px, 5vw, 40px);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+    .hero-date {
+      font-size: 16px;
+      color: #BEE3F8;
+      margin-bottom: 6px;
+    }
+    .hero-location {
+      font-size: 14px;
+      color: #90CDF4;
+    }
+
+    /* ── Container ── */
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ── Intro ── */
+    .intro {
+      background: white;
+      border-left: 4px solid #E07B39;
+      padding: 24px 28px;
+      margin: 32px 0 8px;
+      border-radius: 0 8px 8px 0;
+      font-size: 16px;
+      line-height: 1.7;
+      color: #2D3748;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+
+    /* ── Help section ── */
+    .help-section {
+      margin: 24px 0 32px;
+    }
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #718096;
+      margin-bottom: 14px;
+    }
+    .help-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 10px;
+    }
+    .help-item {
+      background: white;
+      border-radius: 8px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #2D3748;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+    }
+    .help-item .icon {
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    /* ── Project cards ── */
+    .projects-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #718096;
+      margin-bottom: 16px;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .card-header {
+      padding: 18px 24px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .card-header.p1 { background: #1A365D; }
+    .card-header.p2 { background: #276749; }
+    .card-header.p3 { background: #744210; }
+    .card-number {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      opacity: 0.75;
+      color: white;
+      margin-bottom: 3px;
+    }
+    .card-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: white;
+      line-height: 1.2;
+    }
+    .card-body {
+      padding: 20px 24px 24px;
+    }
+    .card-story {
+      font-size: 15px;
+      color: #4A5568;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    .card-what-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #718096;
+      margin-bottom: 8px;
+    }
+    .card-what {
+      font-size: 15px;
+      color: #2D3748;
+      line-height: 1.7;
+    }
+    .card-what ul {
+      padding-left: 18px;
+      margin-top: 4px;
+    }
+    .card-what ul li {
+      margin-bottom: 3px;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      padding: 36px 24px 48px;
+      font-size: 13px;
+      color: #718096;
+      line-height: 1.8;
+    }
+    .footer strong {
+      color: #2D3748;
+    }
+    .footer-divider {
+      width: 40px;
+      height: 3px;
+      background: #E07B39;
+      margin: 0 auto 20px;
+      border-radius: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-eyebrow">Veysú · Crossroads Church</div>
+    <h1>Go Day 2026</h1>
+    <div class="hero-date">Saturday, May 16, 2026</div>
+    <div class="hero-location">Kupini, La Paz, Bolivia</div>
+  </div>
+
+  <div class="container">
+
+    <!-- Intro -->
+    <div class="intro">
+      Go Day is a Crossroads Church tradition where the whole community steps
+      out of the building and into people's lives — showing up for real families
+      with real needs. One day, all hands on deck, together.<br><br>
+      This year we're serving three families in the Kupini community. It's a
+      full day of hands-on work, and there's a role for every person who shows
+      up. You don't need construction experience. You just need to come. This
+      is what giving looks like — coming together, rolling up our sleeves, and
+      creating real change in the lives of the people around us.
+    </div>
+
+    <!-- How you can help -->
+    <div class="help-section">
+      <div class="section-label">How you can help</div>
+      <div class="help-grid">
+        <div class="help-item"><span class="icon">🧱</span> Carry &amp; move materials</div>
+        <div class="help-item"><span class="icon">🪣</span> Mix &amp; pass cement</div>
+        <div class="help-item"><span class="icon">🔧</span> Install pipes &amp; drainage</div>
+        <div class="help-item"><span class="icon">🛏️</span> Assemble furniture</div>
+        <div class="help-item"><span class="icon">🥪</span> Make &amp; hand out sandwiches</div>
+        <div class="help-item"><span class="icon">💧</span> Keep everyone hydrated</div>
+        <div class="help-item"><span class="icon">👶</span> Watch over the kids</div>
+        <div class="help-item"><span class="icon">📸</span> Capture the day</div>
+        <div class="help-item"><span class="icon">🙏</span> Pray &amp; encourage</div>
+      </div>
+    </div>
+
+    <!-- Projects -->
+    <div class="projects-label">The three projects</div>
+
+    <!-- Project 1 -->
+    <div class="card">
+      <div class="card-header p1">
+        <div>
+          <div class="card-number">Project 1</div>
+          <div class="card-title">Rebuilding Celia's Wall</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="card-story">
+          Celia is a mother of four and one of Veysú's most devoted community
+          volunteers. Last rainy season, a landslide brought down the exterior
+          wall of her home on the hillside. Together we're going to rebuild it.
+        </p>
+        <div class="card-what-label">What we'll do</div>
+        <div class="card-what">
+          <ul>
+            <li>Carry and organize rebar, cement, and sand</li>
+            <li>Mix cement and pass bricks down the line</li>
+            <li>Keep the work site running smoothly</li>
+            <li>Feed and hydrate the team throughout the day</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="card">
+      <div class="card-header p2">
+        <div>
+          <div class="card-number">Project 2</div>
+          <div class="card-title">Drainage for Patricia's Home</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="card-story">
+          Patricia's home has flooded more times than she can count. Living on
+          the hillside means every rainy season sends water straight to her
+          foundation. We'll install PVC drainage channels to finally redirect
+          that water and protect her home.
+        </p>
+        <div class="card-what-label">What we'll do</div>
+        <div class="card-what">
+          <ul>
+            <li>Dig and prepare the drainage path</li>
+            <li>Cut and connect PVC drainage pipes</li>
+            <li>Direct the team and handle materials</li>
+            <li>Keep the crew fed and hydrated</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="card">
+      <div class="card-header p3">
+        <div>
+          <div class="card-number">Project 3</div>
+          <div class="card-title">A Bunk Bed for David's Girls</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="card-story">
+          David is a widower and blacksmith raising seven children in a small
+          home divided by hanging fabric curtains. His three daughters share a
+          single bed. We're purchasing and assembling a two-level metal bunk bed
+          with full bedding — David, being a blacksmith, will lead the assembly.
+          His son Davidson and daughter Marioly were baptized on May 1st.
+        </p>
+        <div class="card-what-label">What we'll do</div>
+        <div class="card-what">
+          <ul>
+            <li>Receive and carry the bunk bed and bedding</li>
+            <li>Assist David with assembly</li>
+            <li>Make the beds and set everything up</li>
+            <li>Help reorganize the home's living spaces so the family can make better use of what they have</li>
+            <li>Celebrate with the family</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /container -->
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-divider"></div>
+    <strong>Go Day · Saturday, May 16, 2026</strong><br>
+    Kupini, La Paz, Bolivia<br><br>
+    Veysú · In partnership with Crossroads Church
+  </div>
+
+</body>
+</html>
